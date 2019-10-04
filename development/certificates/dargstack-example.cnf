@@ -15,5 +15,7 @@ keyUsage=critical,digitalSignature,keyEncipherment
 subjectAltName = @alt_names
 
 [alt_names]
-DNS.1 = [project-name].test
-DNS.2 = [sub].[project-name].test
+DNS.1 = dargstack-example.test
+DNS.2 = adminer.dargstack-example.test
+DNS.3 = traefik.dargstack-example.test
+DNS.4 = www.dargstack-example.test
