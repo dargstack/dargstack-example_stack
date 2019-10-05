@@ -8,7 +8,7 @@ services:
     image: dargmuesli/dargstack-example:0.0.0
     volumes:
     - (( replace ))
-    - acme_data:/etc/ssl/certificates/
+    - acme_data:/etc/nginx/cert/
   traefik:
     command:
     - (( prepend ))
