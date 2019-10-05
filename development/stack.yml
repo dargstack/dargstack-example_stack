@@ -24,7 +24,6 @@ services:
       - traefik.enable=true
       - traefik.port=443
       - traefik.protocol=https
-      - traefik.frontend.priority=1
       - traefik.frontend.rule=Host:${STACK_DOMAIN},www.${STACK_DOMAIN}
     image: dargmuesli/dargstack-example:dev
     volumes:
