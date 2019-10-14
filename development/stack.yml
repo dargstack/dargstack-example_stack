@@ -1,12 +1,12 @@
 secrets:
   postgres_db:
-    file: ./secrets/postgres_db.secret
+    file: ./secrets/postgres/db.secret
   postgres_password:
-    file: ./secrets/postgres_password.secret
+    file: ./secrets/postgres/password.secret
   postgres_user:
-    file: ./secrets/postgres_user.secret
+    file: ./secrets/postgres/user.secret
   postgres-backup_db:
-    file: ./secrets/postgres-backup_db.secret
+    file: ./secrets/postgres-backup/db.secret
 services:
   adminer:
     deploy:
