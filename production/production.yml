@@ -5,7 +5,7 @@ secrets:
     external: true
 services:
   dargstack-example:
-    image: dargmuesli/dargstack-example:0.0.0
+    image: dargmuesli/dargstack-example:1.0.0
     volumes:
     - (( replace ))
     - acme_data:/etc/nginx/cert/
