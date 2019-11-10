@@ -5,7 +5,7 @@ secrets:
     external: true
 services:
   dargstack-example:
-    image: dargmuesli/dargstack-example:1.0.0
+    image: dargmuesli/dargstack-example:1.0.0@sha256:1e014c3ce957892eecfe4b651d601330440cd4f700a96343585531cdacfd7273
     volumes:
     - (( replace ))
     - acme_data:/etc/nginx/cert/
@@ -31,7 +31,7 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
     - acme_data:/etc/traefik/acme/
   traefik_certs-dumper:
-    image: ldez/traefik-certs-dumper:v2.6.0
+    image: ldez/traefik-certs-dumper:v2.6.0@sha256:f786bbf5b21fcd68f4103c9807657a44fc74aeec16fc4702e4c947fb1050fa7d
     command:
     - file
     - --clean=false

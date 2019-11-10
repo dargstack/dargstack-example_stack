@@ -15,7 +15,7 @@ services:
       - traefik.frontend.rule=Host:adminer.${STACK_DOMAIN}
       - traefik.port=8080
       - traefik.frontend.auth.basic=${STACK_AUTH_BASIC}
-    image: adminer:4
+    image: adminer:4@sha256:4ca2a6eb39e94af14d317232e86855c8fc442c3d5332fab9ce70d0bc3b112d65
     volumes:
     - ../production/configurations/adminer/adminer.css:/var/www/html/adminer.css:ro
   dargstack-example:
@@ -34,7 +34,7 @@ services:
       POSTGRES_DB_FILE: /run/secrets/postgres_db
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       POSTGRES_USER_FILE: /run/secrets/postgres_user
-    image: postgres:12-alpine
+    image: postgres:12-alpine@sha256:55ce4ed5ea366bfe9bd141b85608eb62a9f26f524ce0d095fb4c0a3ee50228cd
     secrets:
     - postgres_db
     - postgres_password
@@ -47,7 +47,7 @@ services:
       POSTGRES_HOST: postgres
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       POSTGRES_USER_FILE: /run/secrets/postgres_user
-    image: prodrigestivill/postgres-backup-local:12-alpine
+    image: prodrigestivill/postgres-backup-local:12-alpine@sha256:b02a430e5f71d2a71f85a3c00217ea4717e67860dc27c8e8da13e28addad80a7
     secrets:
     - postgres-backup_db
     - postgres_password
@@ -76,7 +76,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:1.7-alpine
+    image: traefik:1.7-alpine@sha256:b21fa147641d99b470d70a4197bc4f6ca460d52a48eca2e9d4fa8df548db60d5
     ports:
     - mode: host
       protocol: tcp
