@@ -1,10 +1,19 @@
 secrets:
-  traefik_cf-api-email:
+  traefik_cf-dns-api-token:
     external: true
-  traefik_cf-api-key:
+  traefik_cf-zone-api-token:
     external: true
 services:
+  adminer:
+    deploy:
+      labels:
+      - (( append ))
+      - traefik.http.routers.adminer_secure.middlewares=auth
+      - traefik.http.routers.adminer_secure.tls.certresolver=default
   dargstack-example:
+      labels:
+      - (( append ))
+      - traefik.tcp.routers.dargstack-example_tcp.tls.certresolver=default
     image: dargmuesli/dargstack-example:1.0.0@sha256:1e014c3ce957892eecfe4b651d601330440cd4f700a96343585531cdacfd7273
     volumes:
     - (( replace ))
@@ -12,24 +21,23 @@ services:
   traefik:
     command:
     - (( prepend ))
-    - --acme.acmeLogging=true
-    - --acme.dnsChallenge.provider=${STACK_ACME_PROVIDER}
-    - --acme.domains=${STACK_DOMAIN},adminer.${STACK_DOMAIN},traefik.${STACK_DOMAIN},www.${STACK_DOMAIN}
-    - --acme.email=${STACK_ACME_EMAIL}
-    - --acme.entrypoint=https
-    - --acme.storage=/etc/traefik/acme/acme.json
+    - --certificatesResolvers.default.acme.email=${STACK_ACME_EMAIL}
+    - --certificatesResolvers.default.acme.storage=/etc/traefik/acme/acme.json
+    - --certificatesResolvers.default.acme.dnsChallenge.provider=${STACK_ACME_PROVIDER}
+    deploy:
+      labels:
+      - (( append ))
+      - traefik.http.middlewares.auth.basicauth.users=${STACK_AUTH_BASIC}
+      - traefik.http.routers.traefik-secure.middlewares=auth
+      - traefik.http.routers.traefik-secure.tls.certresolver=default
     environment:
       # For other providers see:
       # https://docs.traefik.io/configuration/acme/#provider
-      CF_API_EMAIL_FILE: /run/secrets/traefik_cf-api-email
-      CF_API_KEY_FILE: /run/secrets/traefik_cf-api-key
+      CF_DNS_API_TOKEN_FILE: /run/secrets/traefik_cf-dns-api-token
+      CF_ZONE_API_TOKEN_FILE: /run/secrets/traefik_cf-zone-api-token
     secrets:
-    - traefik_cf-api-email
-    - traefik_cf-api-key
-    volumes:
-    - (( replace ))
-    - /var/run/docker.sock:/var/run/docker.sock
-    - acme_data:/etc/traefik/acme/
+    - traefik_cf-dns-api-token
+    - traefik_cf-zone-api-token
   traefik_certs-dumper:
     image: ldez/traefik-certs-dumper:v2.6.0@sha256:f786bbf5b21fcd68f4103c9807657a44fc74aeec16fc4702e4c947fb1050fa7d
     command:
@@ -38,13 +46,12 @@ services:
     - --crt-name="$STACK_DOMAIN"
     - --dest=/etc/traefik/acme/
     - --key-name="$STACK_DOMAIN"
-    - --post-hook=/mnt/traefik_certs-dumper/post-hook $STACK_DOMAIN
     - --source=/etc/traefik/acme/acme.json
+    - --version=v2
     - --watch
     environment:
       STACK_DOMAIN: ${STACK_DOMAIN}
     volumes:
     - acme_data:/etc/traefik/acme/
-    - ./configurations/traefik_certs-dumper/post-hook:/mnt/traefik_certs-dumper/post-hook
 volumes:
   acme_data: {}
