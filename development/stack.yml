@@ -27,10 +27,9 @@ services:
       - traefik.enable=true
       - traefik.http.routers.dargstack-example.middlewares=redirectscheme
       - traefik.http.routers.dargstack-example.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
-      - traefik.http.services.dargstack-example.loadbalancer.server.port=80
-      - traefik.tcp.routers.dargstack-example_tcp.rule=HostSNI(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
-      - traefik.tcp.routers.dargstack-example_tcp.tls.passthrough=true
-      - traefik.tcp.services.dargstack-example_tcp.loadbalancer.server.port=4200
+      - traefik.http.routers.dargstack-example_secure.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
+      - traefik.http.routers.dargstack-example_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
+      - traefik.http.services.dargstack-example_secure.loadbalancer.server.port=4200
     image: dargmuesli/dargstack-example:dev
     volumes:
     - ../../dargstack-example/:/var/www/dargstack-example/

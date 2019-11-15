@@ -14,7 +14,7 @@ services:
     deploy:
       labels:
       - (( append ))
-      - traefik.tcp.routers.dargstack-example_tcp.tls.certresolver=default
+      - traefik.http.routers.dargstack-example_secure.tls.certresolver=default
     image: dargmuesli/dargstack-example:1.1.0@sha256:f3e39c0fb4f96347d8610a000190e6ae951754986ed963c7d047e96a2a1d8918
     volumes:
     - (( replace ))
