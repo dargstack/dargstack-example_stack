@@ -21,6 +21,7 @@ services:
     volumes:
     - ../production/configurations/adminer/adminer.css:/var/www/html/adminer.css:ro
   dargstack-example:
+    command: ng serve --host=0.0.0.0 --disable-host-check --ssl --ssl-cert=/etc/nginx/cert/dargstack-example.crt --ssl-key=/etc/nginx/cert/dargstack-example.key
     deploy:
       labels:
       - traefik.enable=true
@@ -29,7 +30,7 @@ services:
       - traefik.http.services.dargstack-example.loadbalancer.server.port=80
       - traefik.tcp.routers.dargstack-example_tcp.rule=HostSNI(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
       - traefik.tcp.routers.dargstack-example_tcp.tls.passthrough=true
-      - traefik.tcp.services.dargstack-example_tcp.loadbalancer.server.port=443
+      - traefik.tcp.services.dargstack-example_tcp.loadbalancer.server.port=4200
     image: dargmuesli/dargstack-example:dev
     volumes:
     - ../../dargstack-example/:/var/www/dargstack-example/
