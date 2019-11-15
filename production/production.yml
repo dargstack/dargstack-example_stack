@@ -11,6 +11,7 @@ services:
       - traefik.http.routers.adminer_secure.middlewares=auth
       - traefik.http.routers.adminer_secure.tls.certresolver=default
   dargstack-example:
+    deploy:
       labels:
       - (( append ))
       - traefik.tcp.routers.dargstack-example_tcp.tls.certresolver=default
