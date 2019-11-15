@@ -15,7 +15,7 @@ services:
       labels:
       - (( append ))
       - traefik.tcp.routers.dargstack-example_tcp.tls.certresolver=default
-    image: dargmuesli/dargstack-example:1.0.0@sha256:1e014c3ce957892eecfe4b651d601330440cd4f700a96343585531cdacfd7273
+    image: dargmuesli/dargstack-example:1.1.0@sha256:ac3636221d9fe8daddb5c1fe8738651c69b2fed9ff15b5b59253fd85b0014f19
     volumes:
     - (( replace ))
     - acme_data:/etc/nginx/cert/
