@@ -1,4 +1,0 @@
-#!/bin/sh
-
-ln -f /etc/traefik/acme/certs/${1}.crt /etc/traefik/acme/dargstack-example.crt
-ln -f /etc/traefik/acme/private/${1}.key /etc/traefik/acme/dargstack-example.key
