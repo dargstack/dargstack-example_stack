@@ -1,12 +1,12 @@
 secrets:
+  postgres-backup_db:
+    file: ./secrets/postgres-backup/db.secret
   postgres_db:
     file: ./secrets/postgres/db.secret
   postgres_password:
     file: ./secrets/postgres/password.secret
   postgres_user:
     file: ./secrets/postgres/user.secret
-  postgres-backup_db:
-    file: ./secrets/postgres-backup/db.secret
 services:
   adminer:
     deploy:
@@ -62,15 +62,15 @@ services:
     - ../production/backups/postgres/:/backups/
   traefik:
     command:
-      - --api=true
-      - --entryPoints.web.address=:80
-      - --entryPoints.web-secure.address=:443
-      - --providers.docker=true
-      - --providers.docker.endpoint=unix:///var/run/docker.sock
-      - --providers.docker.exposedByDefault=false
-      - --providers.docker.swarmMode=true
-      - --providers.file.filename=/dynamic.yml #DARGSTACK-REMOVE
-      - --providers.file.watch=true #DARGSTACK-REMOVE
+    - --api=true
+    - --entryPoints.web.address=:80
+    - --entryPoints.web-secure.address=:443
+    - --providers.docker=true
+    - --providers.docker.endpoint=unix:///var/run/docker.sock
+    - --providers.docker.exposedByDefault=false
+    - --providers.docker.swarmMode=true
+    - --providers.file.filename=/dynamic.yml #DARGSTACK-REMOVE
+    - --providers.file.watch=true #DARGSTACK-REMOVE
     deploy:
       labels:
       - traefik.enable=true
