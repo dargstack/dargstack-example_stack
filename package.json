@@ -1,0 +1,21 @@
+{
+  "name": "dargstack-example_stack",
+  "private": true,
+  "version": "2.0.0",
+  "scheduleVersion": "2.0.0",
+  "description": "Basic stack configuration to see what DargStack is meant for.",
+  "repository": "https://github.com/dargmuesli/dargstack-example_stack.git",
+  "author": "Jonas Thelemann <e-mail@jonas-thelemann.de>",
+  "license": "GPL-3.0-only",
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
+    "husky": "4.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
