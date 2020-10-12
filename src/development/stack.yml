@@ -1,14 +1,35 @@
+# dargstack-example.test
+# https://dargstack-example.test/
+# dargstack-example
+# https://github.com/dargmuesli/dargstack-example/
+---
 secrets:
   postgres-backup_db:
+  # The database names that are to be backed up.
     file: ./secrets/postgres-backup/db.secret
   postgres_db:
+  # The database's name.
     file: ./secrets/postgres/db.secret
   postgres_password:
+  # The database default user's password.
     file: ./secrets/postgres/password.secret
   postgres_user:
+  # The database default user's name.
     file: ./secrets/postgres/user.secret
 services:
   adminer:
+  # You can access the database's frontend at [adminer.dargstack-example.test](https://adminer.dargstack-example.test/).
+  # This information is required for login:
+  #
+  # |          |                     |
+  # | -------- | ------------------- |
+  # | System   | PostgreSQL          |
+  # | Server   | postgres            |
+  # | Username | [postgres_user]     |
+  # | Password | [postgres_password] |
+  # | Database | [postgres_db]       |
+  #
+  # Values in square brackets are [Docker secrets](https://docs.docker.com/engine/swarm/secrets/).
     deploy:
       labels:
       - traefik.enable=true
@@ -21,6 +42,7 @@ services:
     volumes:
     - ../production/configurations/adminer/adminer.css:/var/www/html/adminer.css:ro
   dargstack-example:
+  # You can access the main project at [dargstack-example.test](https://dargstack-example.test/).
     command: ng serve --host=0.0.0.0 --disable-host-check --port 80
     deploy:
       labels:
@@ -35,6 +57,7 @@ services:
     - ../../dargstack-example/:/var/www/dargstack-example/
     - ./certificates/:/etc/nginx/cert/
   postgres:
+  # You can access the database via `adminer`.
     environment:
       POSTGRES_DB_FILE: /run/secrets/postgres_db
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
@@ -47,6 +70,7 @@ services:
     volumes:
     - postgres_data:/var/lib/postgresql/data/
   postgres_backup:
+  # Backup service for `postgres`.
     environment:
       POSTGRES_DB_FILE: /run/secrets/postgres-backup_db
       POSTGRES_HOST: postgres
@@ -61,6 +85,8 @@ services:
     - postgres_data:/var/lib/postgresql/data/
     - ../production/backups/postgres/:/backups/
   traefik:
+  # You can access the reverse proxy's dashboard at [traefik.dargstack-template.test](https://traefik.dargstack-template.test/).
+  # Traefik enables HTTPS for all services and acts as a load-balancer too.
     command:
     - --api=true
     - --entryPoints.web.address=:80
@@ -101,4 +127,6 @@ services:
     - ./configurations/traefik/dynamic.yml:/dynamic.yml:ro #DARGSTACK-REMOVE
 version: "3.6"
 volumes:
-  postgres_data: {}
+  postgres_data:
+  # The database's data.
+    {}
