@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/dargmuesli/dargstack-example_stack/compare/2.1.0...2.2.0) (2021-10-26)
+
+
+### Features
+
+* **secrets:** commit development secrets ([98acb79](https://github.com/dargmuesli/dargstack-example_stack/commit/98acb7942e1f431d76fa8d311daf560de985e83b))
+
 # [2.1.0](https://github.com/dargmuesli/dargstack-example_stack/compare/2.0.0...2.1.0) (2020-10-02)
 
 
