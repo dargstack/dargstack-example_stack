@@ -1,7 +1,7 @@
 {
   "name": "dargstack-example_stack",
   "private": true,
-  "version": "2.2.6",
+  "version": "2.2.7",
   "scheduleVersion": "2.2.7",
   "description": "Basic stack configuration to see what DargStack is meant for.",
   "repository": "https://github.com/dargmuesli/dargstack-example_stack.git",
