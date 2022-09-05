@@ -2,7 +2,7 @@
   "name": "dargstack-example_stack",
   "private": true,
   "version": "2.2.23",
-  "scheduleVersion": "2.2.23",
+  "scheduleVersion": "2.2.24",
   "description": "Basic stack configuration to see what DargStack is meant for.",
   "repository": "https://github.com/dargmuesli/dargstack-example_stack.git",
   "author": "Jonas Thelemann <e-mail@jonas-thelemann.de>",
