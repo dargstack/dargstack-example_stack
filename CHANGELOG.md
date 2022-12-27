@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/dargmuesli/dargstack-example_stack/compare/2.2.32...2.3.0) (2022-12-27)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([ce03152](https://github.com/dargmuesli/dargstack-example_stack/commit/ce03152a08baf2f31c71aa73097fb12a4ebe2879))
+
+
+### Features
+
+* **package:** migrate to pnpm ([bf6787a](https://github.com/dargmuesli/dargstack-example_stack/commit/bf6787a6f196c9d35f1078571dd847a78af9abee))
+
 ## [2.2.32](https://github.com/dargmuesli/dargstack-example_stack/compare/2.2.31...2.2.32) (2022-12-12)
 
 
