@@ -1,3 +1,10 @@
+## [2.3.5](https://github.com/dargmuesli/dargstack-example_stack/compare/2.3.4...2.3.5) (2023-03-06)
+
+
+### Bug Fixes
+
+* **release:** schedule release ([4e2928d](https://github.com/dargmuesli/dargstack-example_stack/commit/4e2928d8f194bf8b1cc964165efdf7bfdb730ba7))
+
 ## [2.3.4](https://github.com/dargmuesli/dargstack-example_stack/compare/2.3.3...2.3.4) (2023-02-20)
 
 
