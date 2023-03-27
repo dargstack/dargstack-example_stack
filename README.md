@@ -3,7 +3,7 @@
 
 The Docker stack configuration for [localhost](https://localhost/).
 
-This project is deployed in accordance to the [DargStack template](https://github.com/dargmuesli/dargstack_template/) to make deployment a breeze. It is closely related to [dargstack-example's source code](https://github.com/dargmuesli/dargstack-example/).
+This project is deployed in accordance to the [DargStack template](https://github.com/dargstack/dargstack_template/) to make deployment a breeze. It is closely related to [dargstack-example's source code](https://github.com/dargstack/dargstack-example/).
 
 ## Table of Contents
 
@@ -80,7 +80,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `traefik_certs-dumper` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)
     
-    See [DargStack: certificates](https://github.com/dargmuesli/dargstack/blob/master/README-skeleton.md#certificates).
+    See [DargStack: certificates](https://github.com/dargstack/dargstack/blob/master/README-skeleton.md#certificates).
     
 
 ## volumes
