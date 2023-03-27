@@ -1,12 +1,9 @@
-# dargstack-example.test
-# https://dargstack-example.test/
+# localhost
+# https://localhost/
 # dargstack-example
 # https://github.com/dargmuesli/dargstack-example/
 ---
 secrets:
-  postgres-backup_db:
-  # The database names that are to be backed up.
-    file: ./secrets/postgres-backup/db.secret
   postgres_db:
   # The database's name.
     file: ./secrets/postgres/db.secret
@@ -18,7 +15,7 @@ secrets:
     file: ./secrets/postgres/user.secret
 services:
   adminer:
-  # You can access the database's frontend at [adminer.dargstack-example.test](https://adminer.dargstack-example.test/).
+  # You can access the database's frontend at [adminer.localhost](https://adminer.localhost/).
   # This information is required for login:
   #
   # |          |                     |
@@ -42,20 +39,28 @@ services:
     volumes:
     - ../production/configurations/adminer/adminer.css:/var/www/html/adminer.css:ro
   dargstack-example:
-  # You can access the main project at [dargstack-example.test](https://dargstack-example.test/).
-    command: ng serve --host=0.0.0.0 --disable-host-check --port 80
+  # You can access the main project at [localhost](https://localhost/).
     deploy:
       labels:
       - traefik.enable=true
+      - traefik.http.routers.dargstack-example.entryPoints=web
       - traefik.http.routers.dargstack-example.middlewares=redirectscheme
       - traefik.http.routers.dargstack-example.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
+      - traefik.http.routers.dargstack-example.service=dargstack-example #DARGSTACK-REMOVE
+      - traefik.http.routers.dargstack-example_secure.entryPoints=web-secure
       - traefik.http.routers.dargstack-example_secure.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
       - traefik.http.routers.dargstack-example_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
-      - traefik.http.services.dargstack-example_secure.loadbalancer.server.port=80
+      - traefik.http.routers.dargstack-example_secure.service=dargstack-example #DARGSTACK-REMOVE
+      - traefik.http.routers.dargstack-example_secure_nuxt.entryPoints=nuxt #DARGSTACK-REMOVE
+      - traefik.http.routers.dargstack-example_secure_nuxt.service=dargstack-example_secure_nuxt #DARGSTACK-REMOVE
+      - traefik.http.routers.dargstack-example_secure_nuxt.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`) #DARGSTACK-REMOVE
+      - traefik.http.services.dargstack-example.loadbalancer.server.port=3000 #DARGSTACK-REMOVE
+      - traefik.http.services.dargstack-example_secure_nuxt.loadbalancer.server.port=24678 #DARGSTACK-REMOVE
     image: dargmuesli/dargstack-example:dev
+    user: node:node
     volumes:
-    - ../../dargstack-example/:/var/www/dargstack-example/
-    - ./certificates/:/etc/nginx/cert/
+    - ${PNPM_STORE_DIR}:/srv/.pnpm-store/
+    - ../../../dargstack-example:/srv/app/
   postgres:
   # You can access the database via `adminer`.
     environment:
@@ -69,23 +74,8 @@ services:
     - postgres_user
     volumes:
     - postgres_data:/var/lib/postgresql/data/
-  postgres_backup:
-  # Backup service for `postgres`.
-    environment:
-      POSTGRES_DB_FILE: /run/secrets/postgres-backup_db
-      POSTGRES_HOST: postgres
-      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
-      POSTGRES_USER_FILE: /run/secrets/postgres_user
-    image: prodrigestivill/postgres-backup-local:15-alpine@sha256:ba07582f28f4104c14da79fa34a5dda372f313d274c551d21c50b2bb075f4432
-    secrets:
-    - postgres-backup_db
-    - postgres_password
-    - postgres_user
-    volumes:
-    - postgres_data:/var/lib/postgresql/data/
-    - ../production/backups/postgres/:/backups/
   traefik:
-  # You can access the reverse proxy's dashboard at [traefik.dargstack-template.test](https://traefik.dargstack-template.test/).
+  # You can access the reverse proxy's dashboard at [traefik.localhost](https://traefik.localhost/).
   # Traefik enables HTTPS for all services and acts as a load-balancer too.
     command:
     - --api=true

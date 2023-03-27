@@ -3,21 +3,11 @@ name: 'CI'
 on:
   pull_request:
   push:
-  release:
-    types: [published]
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3 # v3
-    - name: dargstack derive
-      run: |
-        mkdir ~/scripts/
-        wget "https://raw.githubusercontent.com/dargmuesli/dargstack/master/src/dargstack" -O ~/scripts/dargstack
-        chmod +x ~/scripts/dargstack
-        ~/scripts/dargstack derive
+    name: DargStack rgen
+    uses: dargmuesli/github-actions/.github/workflows/dargstack-rgen.yml@0.32.0
   release-semantic:
     needs: build
     name: Semantic Release

@@ -1,4 +1,7 @@
 secrets:
+  postgres-backup_db:
+  # The database names that are to be backed up.
+    external: true
   traefik_cf-dns-api-token:
   # The DNS provider's DNS API token.
     external: true
@@ -12,16 +15,22 @@ services:
       - (( append ))
       - traefik.http.routers.adminer_secure.middlewares=auth
       - traefik.http.routers.adminer_secure.tls.certresolver=default
-  dargstack-example:
-    command: (( prune ))
-    deploy:
-      labels:
-      - (( append ))
-      - traefik.http.routers.dargstack-example_secure.tls.certresolver=default
-    image: dargmuesli/dargstack-example:1.3.1@sha256:cbf17a357cd42e2ddcb62425d61e25b4220b9c998e878183a540ae2dc4a0683b
+  dargstack-example: (( prune ))
+  postgres_backup:
+  # Backup service for `postgres`.
+    environment:
+      POSTGRES_DB_FILE: /run/secrets/postgres-backup_db
+      POSTGRES_HOST: postgres
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+    image: prodrigestivill/postgres-backup-local:15-alpine@sha256:ba07582f28f4104c14da79fa34a5dda372f313d274c551d21c50b2bb075f4432
+    secrets:
+    - postgres-backup_db
+    - postgres_password
+    - postgres_user
     volumes:
-    - (( replace ))
-    - acme_data:/etc/nginx/cert/
+    - postgres_data:/var/lib/postgresql/data/
+    - ./backups/postgres/:/backups/
   traefik:
     command:
     - (( prepend ))
