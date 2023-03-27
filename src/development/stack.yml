@@ -1,7 +1,7 @@
 # localhost
 # https://localhost/
 # dargstack-example
-# https://github.com/dargmuesli/dargstack-example/
+# https://github.com/dargstack/dargstack-example/
 ---
 secrets:
   postgres_db:
@@ -56,7 +56,7 @@ services:
       - traefik.http.routers.dargstack-example_secure_nuxt.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`) #DARGSTACK-REMOVE
       - traefik.http.services.dargstack-example.loadbalancer.server.port=3000 #DARGSTACK-REMOVE
       - traefik.http.services.dargstack-example_secure_nuxt.loadbalancer.server.port=24678 #DARGSTACK-REMOVE
-    image: dargmuesli/dargstack-example:dev
+    image: dargstack/dargstack-example:dev
     user: node:node
     volumes:
     - ${PNPM_STORE_DIR}:/srv/.pnpm-store/
