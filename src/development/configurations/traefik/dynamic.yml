@@ -1,7 +1,7 @@
 tls:
   certificates:
-    - certFile: /etc/traefik/acme/dargstack-example.crt
-      keyFile: /etc/traefik/acme/dargstack-example.key
+    - certFile: /etc/traefik/acme/traefik.crt
+      keyFile: /etc/traefik/acme/traefik.key
   options:
     mintls13:
       minVersion: VersionTLS13
