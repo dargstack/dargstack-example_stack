@@ -1,3 +1,10 @@
+## [2.3.8](https://github.com/dargstack/dargstack-example_stack/compare/2.3.7...2.3.8) (2023-03-27)
+
+
+### Bug Fixes
+
+* **production:** correct environment file name ([b883f24](https://github.com/dargstack/dargstack-example_stack/commit/b883f2460cff4db71bda090d856ffa2e24b96318))
+
 ## [2.3.7](https://github.com/dargmuesli/dargstack-example_stack/compare/2.3.6...2.3.7) (2023-03-27)
 
 
