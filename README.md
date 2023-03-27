@@ -1,7 +1,7 @@
 # dargstack-example_stack
 
 
-The Docker stack configuration for [localhost](https://localhost/).
+The Docker stack configuration for [dargstack-example](https://dargstack-example.jonas-thelemann.de/).
 
 This project is deployed in accordance to the [DargStack template](https://github.com/dargstack/dargstack_template/) to make deployment a breeze. It is closely related to [dargstack-example's source code](https://github.com/dargstack/dargstack-example/).
 
