@@ -8,8 +8,8 @@ devDependencies:
     specifier: 17.4.4
     version: 17.4.4
   dargstack:
-    specifier: 2.2.0
-    version: 2.2.0
+    specifier: 2.2.1
+    version: 2.2.1
   dargstack_rgen:
     specifier: 0.9.0
     version: 0.9.0
@@ -487,8 +487,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /dargstack@2.2.0:
-    resolution: {integrity: sha512-HiizWCqEE8VxRY+RvJt88gWTd0J/XEm+9IO2BJqCWkr9ekQF21/ui24354awmLKv7PNYmdm8iR/ejFGzK3CVnA==}
+  /dargstack@2.2.1:
+    resolution: {integrity: sha512-7TeoDV8gFS4O8OINshyMcVFFbugFhecdDkjCevDSO/xkBYJvizHdzvQaINImuarJCPbx0YmB7YNZUD4xJlwNnQ==}
     engines: {node: '19'}
     dev: true
 
