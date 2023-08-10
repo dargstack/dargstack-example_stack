@@ -4,7 +4,7 @@
   "version": "2.3.19",
   "description": "Basic stack configuration to see what DargStack is meant for.",
   "repository": "https://github.com/dargstack/dargstack-example_stack.git",
-  "author": "Jonas Thelemann <e-mail@jonas-thelemann.de>",
+  "author": "Jonas Thelemann <e-mail+dargstack/dargstack-example_stack@jonas-thelemann.de>",
   "license": "GPL-3.0-only",
   "type": "module",
   "engines": {
