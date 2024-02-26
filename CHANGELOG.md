@@ -1,3 +1,10 @@
+## [2.3.34](https://github.com/dargstack/dargstack-example_stack/compare/2.3.33...2.3.34) (2024-02-26)
+
+
+### Bug Fixes
+
+* schedule release ([3fa0487](https://github.com/dargstack/dargstack-example_stack/commit/3fa048752273cc1f8a5b00554dc8a077892eb3a6))
+
 ## [2.3.33](https://github.com/dargstack/dargstack-example_stack/compare/2.3.32...2.3.33) (2024-02-12)
 
 
