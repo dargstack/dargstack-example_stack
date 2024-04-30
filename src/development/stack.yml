@@ -45,15 +45,15 @@ services:
       - traefik.enable=true
       - traefik.http.routers.dargstack-example.entryPoints=web
       - traefik.http.routers.dargstack-example.middlewares=redirectscheme
-      - traefik.http.routers.dargstack-example.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
+      - traefik.http.routers.dargstack-example.rule=Host(`${STACK_DOMAIN}`) || Host(`www.${STACK_DOMAIN}`)
       - traefik.http.routers.dargstack-example.service=dargstack-example #DARGSTACK-REMOVE
       - traefik.http.routers.dargstack-example_secure.entryPoints=web-secure
-      - traefik.http.routers.dargstack-example_secure.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`)
+      - traefik.http.routers.dargstack-example_secure.rule=Host(`${STACK_DOMAIN}`) || Host(`www.${STACK_DOMAIN}`)
       - traefik.http.routers.dargstack-example_secure.tls.options=mintls13@file #DARGSTACK-REMOVE
       - traefik.http.routers.dargstack-example_secure.service=dargstack-example #DARGSTACK-REMOVE
       - traefik.http.routers.dargstack-example_secure_nuxt.entryPoints=nuxt #DARGSTACK-REMOVE
       - traefik.http.routers.dargstack-example_secure_nuxt.service=dargstack-example_secure_nuxt #DARGSTACK-REMOVE
-      - traefik.http.routers.dargstack-example_secure_nuxt.rule=Host(`${STACK_DOMAIN}`, `www.${STACK_DOMAIN}`) #DARGSTACK-REMOVE
+      - traefik.http.routers.dargstack-example_secure_nuxt.rule=Host(`${STACK_DOMAIN}`) || Host(`www.${STACK_DOMAIN}`) #DARGSTACK-REMOVE
       - traefik.http.services.dargstack-example.loadbalancer.server.port=3000 #DARGSTACK-REMOVE
       - traefik.http.services.dargstack-example_secure_nuxt.loadbalancer.server.port=24678 #DARGSTACK-REMOVE
     image: dargstack/dargstack-example:dev
@@ -81,10 +81,9 @@ services:
     - --api=true
     - --entryPoints.web.address=:80
     - --entryPoints.web-secure.address=:443
-    - --providers.docker=true
-    - --providers.docker.endpoint=unix:///var/run/docker.sock
-    - --providers.docker.exposedByDefault=false
-    - --providers.docker.swarmMode=true
+    - --providers.swarm=true
+    - --providers.swarm.endpoint=unix:///var/run/docker.sock
+    - --providers.swarm.exposedByDefault=false
     - --providers.file.filename=/dynamic.yml #DARGSTACK-REMOVE
     - --providers.file.watch=true #DARGSTACK-REMOVE
     deploy:
@@ -101,7 +100,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:2.11.2@sha256:c6f6001dd1fc09fb0ae47ad2198102c40a8d9586c02d6040d561fd4fb7e91f45
+    image: traefik:v3.0.0@sha256:7996bdae8aaa70eaacf2978b6c949de5b68c0a24ddc3e40c06344ecc88cfaea3
     ports:
     - mode: host
       protocol: tcp
