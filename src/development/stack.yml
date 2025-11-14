@@ -67,7 +67,7 @@ services:
       POSTGRES_DB_FILE: /run/secrets/postgres_db
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       POSTGRES_USER_FILE: /run/secrets/postgres_user
-    image: postgres:18.0-alpine@sha256:48c8ad3a7284b82be4482a52076d47d879fd6fb084a1cbfccbd551f9331b0e40
+    image: postgres:18.1-alpine@sha256:655a411a84c1d7af7a21473c2eda3d8d24d7a9ff38ca279c897871b34acc0ce1
     secrets:
     - postgres_db
     - postgres_password
@@ -100,7 +100,7 @@ services:
       placement:
         constraints:
         - node.role == manager
-    image: traefik:v3.6.0@sha256:18112aed2bfe3dfb8534f1045622390c3316596cff0cefab64f44e43d23e1640
+    image: traefik:v3.6.1@sha256:fd5932c796f7e2db9fd6bff485ef693d53797f0ee8ad03dc68aa424ea6f21958
     ports:
     - mode: host
       protocol: tcp
