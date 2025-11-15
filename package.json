@@ -1,7 +1,7 @@
 {
   "name": "dargstack-example_stack",
   "private": true,
-  "version": "2.3.69",
+  "version": "2.3.70",
   "description": "Basic stack configuration to see what DargStack is meant for.",
   "repository": "https://github.com/dargstack/dargstack-example_stack.git",
   "author": "Jonas Thelemann <e-mail+dargstack/dargstack-example_stack@jonas-thelemann.de>",
