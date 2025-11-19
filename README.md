@@ -80,7 +80,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `traefik_certs-dumper` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)
     
-    See [DargStack: certificates](https://github.com/dargstack/dargstack/blob/master/README-skeleton.md#certificates).
+    See [dargstack: certificates](https://github.com/dargstack/dargstack/blob/main/docs/template.md#resource-folders).
     
 
 ## volumes

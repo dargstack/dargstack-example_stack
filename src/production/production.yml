@@ -50,7 +50,7 @@ services:
     - traefik_cf-dns-api-token
     - traefik_cf-zone-api-token
   traefik_certs-dumper:
-  # See [DargStack: certificates](https://github.com/dargstack/dargstack/blob/master/README-skeleton.md#certificates).
+  # See [dargstack: certificates](https://github.com/dargstack/dargstack/blob/main/docs/template.md#resource-folders).
     command:
     - file
     - --clean=false
