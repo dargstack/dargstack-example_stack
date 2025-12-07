@@ -48,7 +48,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
 
  - ### `adminer`
     
-    You can access the database's frontend at [adminer.localhost](https://adminer.localhost/).
+    You can access the database's frontend at [adminer.app.localhost](https://adminer.app.localhost/).
     This information is required for login:
     
     |          |                     |
@@ -63,7 +63,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `dargstack-example`
     
-    You can access the main project at [localhost](https://localhost/).
+    You can access the main project at [app.localhost](https://app.localhost/).
     
  - ### `postgres`
     
@@ -75,7 +75,7 @@ This project is deployed in accordance to the [DargStack template](https://githu
     
  - ### `traefik`
     
-    You can access the reverse proxy's dashboard at [traefik.localhost](https://traefik.localhost/).
+    You can access the reverse proxy's dashboard at [traefik.app.localhost](https://traefik.app.localhost/).
     Traefik enables HTTPS for all services and acts as a load-balancer too.
     
  - ### `traefik_certs-dumper` ![production](https://img.shields.io/badge/-production-informational.svg?style=flat-square)

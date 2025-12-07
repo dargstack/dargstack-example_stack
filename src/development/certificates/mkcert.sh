@@ -29,4 +29,4 @@ done
 
 create "root"
 create "traefik" \
-    `# dargstack-example` "localhost" "www.localhost" "127.0.0.1" "0.0.0.0"
+    `# dargstack-example` "app.localhost" "www.app.localhost" "127.0.0.1" "0.0.0.0"
